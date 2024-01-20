@@ -22,7 +22,6 @@ export class TicketRepositoryImpl implements TicketRepository {
     await this.repository.delete(id);
   }
   async findAll(paginationParams: PaginationParams): Promise<TicketModel[]> {
-    console.log(paginationParams)
     return this.mapper.entitiesToModels(
       await this.repository.find({
         take: paginationParams.limit,
