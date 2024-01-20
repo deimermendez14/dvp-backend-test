@@ -1,13 +1,15 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
+import {
+  CreateTicketDTO,
+  PaginationParams,
+  UpdateTicketDTO,
+} from '../../domain/dtos';
+import { TicketModel } from '../../domain/models';
+import { TicketRepository } from '../../domain/repositories';
 import { TicketEntity } from '../entities';
 import { TicketMapper } from '../mappers/ticket.mapper';
-import { PaginationParams } from '@/tickets/domain/dtos';
-import { CreateTicketDTO } from '@/tickets/domain/dtos/create-ticket.dto';
-import { UpdateTicketDTO } from '@/tickets/domain/dtos/update-ticket-dto';
-import { TicketModel } from '@/tickets/domain/models';
-import { TicketRepository } from '@/tickets/domain/repositories';
 
 export class TicketRepositoryImpl implements TicketRepository {
   constructor(
