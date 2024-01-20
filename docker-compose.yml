@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  server:
+    container_name: server
+    build:
+      context: .
+      target: production
+      args:
+        - PORT=${PORT}
+    ports:
+      - '${PORT}:${PORT}'
+    env_file:
+      - .env
+  server-dev:
+    container_name: server-dev
+    restart: unless-stopped
+    build:
+      context: .
+      target: dev
+      args:
+        - PORT=${PORT}
+    ports:
+      - '${PORT}:${PORT}'
+    env_file:
+      - .env
+    volumes:
+      - .:/server
+      - node_modules:/project/node_modules
+    networks:
+      - my-network
+    user: 'root'
+  postgres:
+    container_name: postgres
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+    ports:
+      - ${DATABASE_PORT}:${DATABASE_PORT}
+    volumes:
+      - ../postgres_data:/var/lib/postgresql/data
+    networks:
+      - my-network
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
+    ports:
+      - ${PGADMIN_PORT}:${PGADMIN_PORT_LOCAL}
+    networks:
+      - my-network
+volumes:
+  node_modules:
+  
+networks:
+  my-network:
+    external: true
