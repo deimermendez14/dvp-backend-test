@@ -14,4 +14,3 @@ Finally, the application and database are containerized using Docker. The Docker
 ````bash
 docker-compose up --build -d postgres pgadmin server-dev
 
-Translated with DeepL.com (free version)
