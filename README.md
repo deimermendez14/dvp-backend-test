@@ -4,7 +4,7 @@ This test was developed with nodeJS and nestJS . A brief description of the proj
 
 This project follows the hexagonal architecture pattern (also known as "Ports and Adapters"). The hexagonal architecture encourages separation of concerns by organizing the code into layers that represent different application-oriented responsibilities towards the domain or business logic.
 
-TypeORM was used as an object-relational mapper (ORM) to interact with the database.
+TypeORM was used as an object-relational mapper (ORM) to interact with the database. Please run the migrations.
 
 The API documentation is generated and available through Swagger UI. You can access the documentation through localhost:${PORT}/docs
 
