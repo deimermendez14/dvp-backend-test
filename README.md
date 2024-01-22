@@ -14,3 +14,6 @@ Finally, the application and database are containerized using Docker. The Docker
 ````bash
 docker-compose up --build -d postgres pgadmin server-dev
 
+docker exec -it server-dev /bin/sh
+
+npm run migrations:run
